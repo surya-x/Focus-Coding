@@ -1,4 +1,4 @@
-# Focus-Coding
+# Focus-Coding (focus-di-code)
 
 - Python Script to help manage study hours with breaks along with music control. 
 - Uses PAFY library to retrieve YouTube content and metadata.
