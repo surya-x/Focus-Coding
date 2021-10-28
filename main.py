@@ -59,13 +59,17 @@ video_played = []  # To Store all the video objects already played/playing
 video_played.append(get_random(stream_objects, video_played))
 now_playing = video_played[-1]
 print("CONSOLE: ", now_playing.author)
-
+print(now_playing.getbestaudio().url)
 
 # Opening chrome window to play the song
 driver = get_driver()
 play_song(driver, now_playing.getbestaudio().url)
 
+input()
+driver.execute_script('videos = document.querySelectorAll("video"); for(video of videos) {video.pause()}')
+input()
+driver.execute_script('videos = document.querySelectorAll("video"); for(video of videos) {video.play()}')
+
+
 print("CONSOLE: ", "Done setting\nPlease wait...")
-
-
 # close_project(driver)
