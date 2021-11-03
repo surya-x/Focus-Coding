@@ -1,0 +1,16 @@
+// The file contains links to all the youtube videos that the script will use to play
+//
+// To manually add any YT video link, please paste the link in a new line
+
+https://www.youtube.com/watch?v=q0BVR5jRXxE
+https://www.youtube.com/watch?v=KRA26LhuTP4&
+https://www.youtube.com/watch?v=lTRiuFIWV54
+https://www.youtube.com/watch?v=5qap5aO4i9A
+
+// Add your URL from here..
+
+
+
+
+
+  // lol i fucked your formatting

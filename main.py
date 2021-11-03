@@ -1,5 +1,6 @@
-import random
 import os
+import random
+
 import pafy
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -47,29 +48,36 @@ def close_project(driver):
     driver.close()
 
 
-url = ["https://www.youtube.com/watch?v=q0BVR5jRXxE",
-       "https://www.youtube.com/watch?v=KRA26LhuTP4&",
-       "https://www.youtube.com/watch?v=lTRiuFIWV54",
-       "https://www.youtube.com/watch?v=5qap5aO4i9A"]
-
-print("CONSOLE: ", "Setting up the environment")
-stream_objects = create_streams(url)
-
-video_played = []  # To Store all the video objects already played/playing
-video_played.append(get_random(stream_objects, video_played))
-now_playing = video_played[-1]
-print("CONSOLE: ", now_playing.author)
-print(now_playing.getbestaudio().url)
-
-# Opening chrome window to play the song
-driver = get_driver()
-play_song(driver, now_playing.getbestaudio().url)
-
-input()
-driver.execute_script('videos = document.querySelectorAll("video"); for(video of videos) {video.pause()}')
-input()
-driver.execute_script('videos = document.querySelectorAll("video"); for(video of videos) {video.play()}')
+def load_urls(path=""):     # if not passed path Assumes it in working directory
+    url_list = []
+    with open(os.path.join(path, "ytlinks.txt")) as f:
+        for line in f:
+            li = line.strip(" \n")
+            if not li.startswith("//") and li != "":
+                url_list.append(li)
+        return url_list
 
 
-print("CONSOLE: ", "Done setting\nPlease wait...")
-# close_project(driver)
+if __name__ == '__main__':
+    url = load_urls()
+
+    print("CONSOLE: ", "Setting up the environment")
+    stream_objects = create_streams(url)
+
+    video_played = []  # To Store all the video objects already played/playing
+    video_played.append(get_random(stream_objects, video_played))
+    now_playing = video_played[-1]
+    print("CONSOLE: ", now_playing.author)
+    print(now_playing.getbestaudio().url)
+
+    # Opening chrome window to play the song
+    driver = get_driver()
+    play_song(driver, now_playing.getbestaudio().url)
+
+    input()
+    driver.execute_script('videos = document.querySelectorAll("video"); for(video of videos) {video.pause()}')
+    input()
+    driver.execute_script('videos = document.querySelectorAll("video"); for(video of videos) {video.play()}')
+
+    print("CONSOLE: ", "Done setting\nPlease wait...")
+    # close_project(driver)
